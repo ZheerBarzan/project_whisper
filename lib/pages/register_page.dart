@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:project_whisper/components/my_button.dart';
 import 'package:project_whisper/components/my_square.dart';
 import 'package:project_whisper/components/my_textfiled.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   final Function()? onTap;
-
-  LoginPage({super.key, this.onTap});
-
-  void login() {}
+  RegisterPage({super.key, this.onTap});
+  void signup() {}
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +30,9 @@ class LoginPage extends StatelessWidget {
               height: 50,
             ),
             //welcome back
+
             Text(
-              "!!!دیمانە و بە خێر",
+              "!!!یاخوا وێڵکەم بی",
               style: TextStyle(
                   fontSize: 28, color: Theme.of(context).colorScheme.primary),
             ),
@@ -59,8 +59,17 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+            //confirm password Textfiled
+            MyTextField(
+              hintText: "Confirm Password",
+              obscureText: true,
+              controller: _confirmPasswordController,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             // login button
-            MyButton(onTap: login, text: "Login"),
+            MyButton(onTap: signup, text: "Sign Up"),
             const SizedBox(
               height: 10,
             ),
@@ -69,11 +78,11 @@ class LoginPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Don't have an account?"),
+                const Text("Already a member?"),
                 GestureDetector(
                   onTap: onTap,
                   child: const Text(
-                    "Register now",
+                    "Login now",
                     style: TextStyle(color: Colors.blue),
                   ),
                 )
