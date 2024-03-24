@@ -50,7 +50,8 @@ class LoginPage extends StatelessWidget {
             Text(
               "!!!دیمانە و بە خێر",
               style: TextStyle(
-                  fontSize: 28, color: Theme.of(context).colorScheme.primary),
+                  fontSize: 28,
+                  color: Theme.of(context).colorScheme.inversePrimary),
             ),
 
             const SizedBox(

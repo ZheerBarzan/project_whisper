@@ -59,7 +59,8 @@ class RegisterPage extends StatelessWidget {
             Text(
               "!!!یاخوا وێڵکەم بی",
               style: TextStyle(
-                  fontSize: 28, color: Theme.of(context).colorScheme.primary),
+                  fontSize: 28,
+                  color: Theme.of(context).colorScheme.inversePrimary),
             ),
 
             const SizedBox(
