@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:project_whisper/auth/auth_service.dart';
 import 'package:project_whisper/components/my_button.dart';
 import 'package:project_whisper/components/my_square.dart';
 import 'package:project_whisper/components/my_textfiled.dart';
@@ -11,7 +12,23 @@ class LoginPage extends StatelessWidget {
 
   LoginPage({super.key, this.onTap});
 
-  void login() {}
+  void login(BuildContext context) async {
+    final authService = AuthService();
+
+    try {
+      await authService.signInWithEmailAndPassword(
+          _emailController.text, _passwordController.text);
+    } catch (e) {
+      showDialog(
+        // ignore: use_build_context_synchronously
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(e.toString()),
+          content: Text(e.toString()),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +76,7 @@ class LoginPage extends StatelessWidget {
               height: 10,
             ),
             // login button
-            MyButton(onTap: login, text: "Login"),
+            MyButton(onTap: () => login(context), text: "Login"),
             const SizedBox(
               height: 10,
             ),
@@ -87,7 +104,7 @@ class LoginPage extends StatelessWidget {
               children: [
                 SqureTile(
                   imagePath: "lib/images/google.png",
-                  onTap: () {},
+                  onTap: () => AuthService().signInWithGoogle(),
                 ),
                 const SizedBox(width: 20),
                 const SqureTile(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_whisper/auth/auth_service.dart';
 import 'package:project_whisper/components/my_button.dart';
 import 'package:project_whisper/components/my_square.dart';
 import 'package:project_whisper/components/my_textfiled.dart';
@@ -10,7 +11,32 @@ class RegisterPage extends StatelessWidget {
       TextEditingController();
   final Function()? onTap;
   RegisterPage({super.key, this.onTap});
-  void signup() {}
+  void signup(BuildContext context) async {
+    final _authService = AuthService();
+
+    if (_passwordController.text == _confirmPasswordController.text) {
+      try {
+        await _authService.createUserWithEmailAndPassword(
+            _emailController.text, _passwordController.text);
+      } catch (e) {
+        showDialog(
+          // ignore: use_build_context_synchronously
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(e.toString()),
+            content: Text(e.toString()),
+          ),
+        );
+      }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          title: Text("Password not match"),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +94,7 @@ class RegisterPage extends StatelessWidget {
               height: 10,
             ),
             // login button
-            MyButton(onTap: signup, text: "Sign Up"),
+            MyButton(onTap: () => signup(context), text: "Sign Up"),
             const SizedBox(
               height: 10,
             ),
@@ -96,7 +122,7 @@ class RegisterPage extends StatelessWidget {
               children: [
                 SqureTile(
                   imagePath: "lib/images/google.png",
-                  onTap: () {},
+                  onTap: () => AuthService().signInWithGoogle(),
                 ),
                 const SizedBox(width: 20),
                 const SqureTile(

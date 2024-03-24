@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:project_whisper/auth/login_or_register.dart';
+import 'package:project_whisper/auth/auth_gate.dart';
 import 'package:project_whisper/firebase_options.dart';
 import 'package:project_whisper/themes/light_theme.dart';
 
@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme:
             ThemeData(colorScheme: lightMode.colorScheme, useMaterial3: true),
-        home: const LoginOrRegistrationPage());
+        home: const AuthGate());
   }
 }
