@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:project_whisper/auth/auth_gate.dart';
+import 'package:project_whisper/services/auth/auth_gate.dart';
 import 'package:project_whisper/firebase_options.dart';
 import 'package:project_whisper/themes/light_theme.dart';
 

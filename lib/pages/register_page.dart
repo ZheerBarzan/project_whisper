@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_whisper/auth/auth_service.dart';
+import 'package:project_whisper/services/auth/auth_service.dart';
 import 'package:project_whisper/components/my_button.dart';
 import 'package:project_whisper/components/my_square.dart';
 import 'package:project_whisper/components/my_textfiled.dart';

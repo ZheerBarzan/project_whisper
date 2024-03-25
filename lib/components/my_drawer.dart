@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_whisper/auth/auth_service.dart';
+import 'package:project_whisper/services/auth/auth_service.dart';
 import 'package:project_whisper/pages/settings_page.dart';
 
 class MyDrawer extends StatelessWidget {
