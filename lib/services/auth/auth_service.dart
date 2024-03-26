@@ -7,6 +7,12 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // get current user
+
+  User? getCurrentUser() {
+    return _auth.currentUser;
+  }
+
   //sign in
 
   Future<UserCredential> signInWithEmailAndPassword(
@@ -17,7 +23,7 @@ class AuthService {
 
       // save user info if the user still exists
       _firestore.collection("Users").doc(userCredential.user!.uid).set({
-        "user_id": userCredential.user!.uid,
+        "uid": userCredential.user!.uid,
         "email": email,
       });
 
@@ -39,7 +45,7 @@ class AuthService {
 
       // save user info
       _firestore.collection("Users").doc(userCredential.user!.uid).set({
-        "user_id": userCredential.user!.uid,
+        "uid": userCredential.user!.uid,
         "email": email,
       });
 

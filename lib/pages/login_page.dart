@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:project_whisper/services/auth/auth_service.dart';
 import 'package:project_whisper/components/my_button.dart';
 import 'package:project_whisper/components/my_square.dart';

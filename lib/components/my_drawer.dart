@@ -5,8 +5,8 @@ import 'package:project_whisper/pages/settings_page.dart';
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
   void logout() {
-    final _authService = AuthService();
-    _authService.signOut();
+    final authService = AuthService();
+    authService.signOut();
   }
 
   @override

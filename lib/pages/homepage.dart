@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:project_whisper/components/my_drawer.dart';
 import 'package:project_whisper/components/user_tile.dart';
 import 'package:project_whisper/pages/chat_page.dart';
@@ -62,16 +61,23 @@ class HomePage extends StatelessWidget {
       Map<String, dynamic> userData, BuildContext context) {
     //display all user except the current user
 
-    return UserTile(
-      text: userData['email'],
-      onTap: () {
-        Navigator.push(
+    if (userData['email'] != _authService.getCurrentUser()!.email) {
+      return UserTile(
+        text: userData['email'],
+        onTap: () {
+          Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ChatPage(
-                      reciverEmail: userData['email'],
-                    )));
-      },
-    );
+              builder: (context) => ChatPage(
+                reciverEmail: userData['email'],
+                reciverID: userData['uid'],
+              ),
+            ),
+          );
+        },
+      );
+    } else {
+      return Container();
+    }
   }
 }
