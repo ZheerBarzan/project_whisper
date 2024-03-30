@@ -73,25 +73,59 @@ class ChatPage extends StatelessWidget {
   Widget _buildMessgesItem(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
-    return Text(data['messege']);
+    // is current user
+
+    bool isCrurentUser = data['senderID'] == _authService.getCurrentUser()!.uid;
+
+    var messageAlign =
+        isCrurentUser ? Alignment.centerRight : Alignment.centerLeft;
+
+    //align messege to the right if sender is the current user other wise align to the left
+
+    return Container(
+      alignment: messageAlign,
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment:
+            isCrurentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Text(data['messege']),
+        ],
+      ),
+    );
   }
 
   // build user input
   Widget _buildUserInput() {
-    return Row(
-      children: [
-        Expanded(
-          child: MyTextField(
-            controller: _messageController,
-            obscureText: false,
-            hintText: "Type a message",
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: MyTextField(
+              controller: _messageController,
+              obscureText: false,
+              hintText: "Type a message",
+            ),
           ),
-        ),
-        IconButton(
-          icon: const Icon(Icons.send),
-          onPressed: sendMessage,
-        )
-      ],
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: IconButton(
+              padding: const EdgeInsets.all(15),
+              icon: const Icon(
+                Icons.send,
+                size: 30,
+                color: Colors.white,
+              ),
+              onPressed: sendMessage,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
