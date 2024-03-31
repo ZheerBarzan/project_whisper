@@ -33,6 +33,8 @@ class ChatPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(reciverEmail),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
         body: Column(children: [
           //messages list
@@ -110,15 +112,15 @@ class ChatPage extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8.0),
+            margin: const EdgeInsets.only(right: 20),
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Colors.green,
               borderRadius: BorderRadius.circular(8),
             ),
             child: IconButton(
               padding: const EdgeInsets.all(15),
               icon: const Icon(
-                Icons.send,
+                Icons.arrow_upward,
                 size: 30,
                 color: Colors.white,
               ),
