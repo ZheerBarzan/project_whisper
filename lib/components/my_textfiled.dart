@@ -26,7 +26,7 @@ class MyTextField extends StatelessWidget {
               color: Color.fromARGB(255, 206, 200, 200),
             ),
           ),
-          fillColor: const Color.fromARGB(255, 238, 238, 238),
+          fillColor: Theme.of(context).colorScheme.secondary,
           filled: true,
           hintText: hintText,
         ),

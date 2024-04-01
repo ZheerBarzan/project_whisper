@@ -14,13 +14,24 @@ class SettingsPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Center(
-        child: CupertinoSwitch(
-          value: Provider.of<ThemeProvider>(context).isDarkMode,
-          onChanged: (value) {
-            Provider.of<ThemeProvider>(context, listen: false)
-                .toggleThemeMode();
-          },
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondary,
+            borderRadius: BorderRadius.circular(12)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text("Dark Mode"),
+            CupertinoSwitch(
+              value: Provider.of<ThemeProvider>(context).isDarkMode,
+              onChanged: (value) {
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .toggleThemeMode();
+              },
+            ),
+          ],
         ),
       ),
     );

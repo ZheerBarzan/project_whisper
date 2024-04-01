@@ -17,7 +17,7 @@ class UserTile extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         padding: const EdgeInsets.all(25),
         decoration: BoxDecoration(
-          color: Colors.grey.shade100,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
