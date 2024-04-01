@@ -14,7 +14,7 @@ class SqureTile extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(color: Colors.white),
             borderRadius: BorderRadius.circular(8),
-            color: Colors.grey.shade200),
+            color: Theme.of(context).colorScheme.secondary),
         child: Image.asset(
           imagePath,
           height: 40,

@@ -5,11 +5,17 @@ import 'package:project_whisper/components/my_textfiled.dart';
 import 'package:project_whisper/services/auth/auth_service.dart';
 import 'package:project_whisper/services/chat/chat_services.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   final String reciverEmail;
   final String reciverID;
-  ChatPage({super.key, required this.reciverEmail, required this.reciverID});
+  const ChatPage(
+      {super.key, required this.reciverEmail, required this.reciverID});
 
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
 // text messege controller
   final TextEditingController _messageController = TextEditingController();
 
@@ -17,22 +23,54 @@ class ChatPage extends StatelessWidget {
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
 
+// for textfiled foucs
+  FocusNode _focusNode = FocusNode();
+  @override
+  void initState() {
+    super.initState();
+
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        Future.delayed(const Duration(milliseconds: 500), () => scrollDown());
+      }
+    });
+    Future.delayed(const Duration(milliseconds: 500), () => scrollDown());
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
+
+  // scroll controller
+  final ScrollController _scrollController = ScrollController();
+
+  void scrollDown() {
+    _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.fastOutSlowIn);
+  }
+
   void sendMessage() async {
     // if not empty
     if (_messageController.text.isNotEmpty) {
       //send the message
-      await _chatService.sendMessage(reciverID, _messageController.text);
+      await _chatService.sendMessage(widget.reciverID, _messageController.text);
 
       //clear the text field
       _messageController.clear();
     }
+
+    scrollDown();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(reciverEmail),
+          title: Text(widget.reciverEmail),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
@@ -50,7 +88,7 @@ class ChatPage extends StatelessWidget {
   Widget _buildMessgesList() {
     String senderID = _authService.getCurrentUser()!.uid;
     return StreamBuilder(
-      stream: _chatService.getMessages(reciverID, senderID),
+      stream: _chatService.getMessages(widget.reciverID, senderID),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Center(
@@ -65,6 +103,7 @@ class ChatPage extends StatelessWidget {
         }
 
         return ListView(
+          controller: _scrollController,
           children:
               snapshot.data!.docs.map((doc) => _buildMessgesItem(doc)).toList(),
         );
