@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project_whisper/themes/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -10,6 +13,15 @@ class SettingsPage extends StatelessWidget {
         title: const Text("Settings"),
         backgroundColor: Colors.transparent,
         elevation: 0,
+      ),
+      body: Center(
+        child: CupertinoSwitch(
+          value: Provider.of<ThemeProvider>(context).isDarkMode,
+          onChanged: (value) {
+            Provider.of<ThemeProvider>(context, listen: false)
+                .toggleThemeMode();
+          },
+        ),
       ),
     );
   }
