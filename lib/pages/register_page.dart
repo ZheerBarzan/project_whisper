@@ -44,7 +44,7 @@ class RegisterPage extends StatelessWidget {
       /* appBar: AppBar(
         title: const Text('چپە چپ'),
       ),*/
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -57,7 +57,7 @@ class RegisterPage extends StatelessWidget {
             //welcome back
 
             Text(
-              "!!!یاخوا وێڵکەم بی",
+              "Hello There!!!",
               style: TextStyle(
                   fontSize: 28,
                   color: Theme.of(context).colorScheme.inversePrimary),

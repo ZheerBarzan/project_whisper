@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
       /* appBar: AppBar(
         title: const Text('چپە چپ'),
       ),*/
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Center(
         child: SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -47,7 +47,7 @@ class LoginPage extends StatelessWidget {
             ),
             //welcome back
             Text(
-              "!!!دیمانە و بە خێر",
+              " welcome back!!!",
               style: TextStyle(
                   fontSize: 28,
                   color: Theme.of(context).colorScheme.inversePrimary),
